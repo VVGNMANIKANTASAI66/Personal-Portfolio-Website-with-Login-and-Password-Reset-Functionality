@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manikanta's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Roboto', sans-serif;
+      background: #f4f4f4; color: #333; scroll-behavior: smooth;
+    }
+    a { color: #007BFF; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Containers */
+    #login-background {
+      height: 100vh; display: flex; justify-content: center; align-items: center;
+      padding: 1rem;
+      background: linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #6fb1fc 100%);
+    }
+    #login-container, #reset-container {
+      background: white; padding: 2rem; border-radius: 10px;
+      width: 100%; max-width: 400px; text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease forwards;
+    }
+    #reset-container { display: none; }
+    #main-content { display: none; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+    /* Forms */
+    input, textarea {
+      width: 100%; padding: 0.75rem; margin: 0.5rem 0 1rem;
+      border: 1px solid #ccc; border-radius: 5px; font-family: inherit; font-size: 1rem;
+    }
+    button {
+      padding: 0.75rem 2rem; background-color: #0052d4; border: none;
+      color: white; font-weight: 700; font-size: 1rem; border-radius: 5px; cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover { background-color: #003a9a; }
+    #login-container a, #reset-container a {
+      display: inline-block; margin-top: 1rem; font-size: 0.9rem; color: #0052d4;
+    }
+    #login-container a:hover, #reset-container a:hover { text-decoration: underline; }
+
+    /* Header & Navigation */
+    header { text-align: center; padding: 1rem 0; color: #222; }
+    nav {
+      display: flex; justify-content: center; background: #222; flex-wrap: wrap;
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav a {
+      color: #bbb; padding: 1rem 2rem; font-weight: 700; font-size: 1rem;
+      white-space: nowrap; transition: color 0.3s;
+    }
+    nav a.active, nav a:hover { color: #007BFF; border-bottom: 3px solid #007BFF; }
+
+    /* Sections */
+    section {
+      background: white; padding: 2rem; margin: 2rem 0;
+      border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      opacity: 0; transform: translateY(20px);
+      animation-fill-mode: forwards; animation-duration: 0.8s;
+    }
+    section.visible { opacity: 1; transform: translateY(0); animation-name: fadeInUp; }
+    h2 { margin-top: 0; margin-bottom: 1rem; padding: 0.5rem 1rem; border-radius: 8px; color: white; }
+    #about h2 { background-color: #004080; }
+    #projects h2 { background-color: #007a33; }
+    #contact h2 { background-color: #b33a3a; }
+
+    .project-card {
+      background: #f9f9f9; padding: 1rem; margin-bottom: 1rem;
+      border-left: 5px solid #333; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .project-card h3 { margin: 0 0 0.5rem 0; }
+    #about ul { list-style: none; padding-left: 0; line-height: 1.6; }
+    #about ul li strong { display: inline-block; width: 130px; }
+
+    footer { text-align: center; padding: 1rem 0; background: #222; color: white; font-size: 0.9rem; }
+
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav { flex-direction: column; }
+      nav a { padding: 0.8rem 0; }
+      section { margin: 1rem 0; padding: 1rem; }
+      #login-container, #reset-container { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Login Section -->
+<div id="login-background">
+  <div id="login-container">
+    <h2>Login</h2>
+    <form id="login-form" autocomplete="off">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <p><a id="forgot-password-link" href="#">Forgot Password?</a></p>
+    </form>
+  </div>
+
+  <div id="reset-container">
+    <h2>Reset Password</h2>
+    <form id="reset-form" autocomplete="off">
+      <input type="email" id="reset-email" placeholder="Enter your email" required />
+      <button type="submit">Send Reset Link</button>
+    </form>
+    <p><a id="back-to-login-link" href="#">Back to Login</a></p>
+  </div>
+</div>
+
+<!-- Main Portfolio Content -->
+<div id="main-content">
+  <header><h1>Welcome to My Portfolio</h1></header>
+  <nav>
+    <a href="#about" class="nav-link active">About Me</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I’m <strong>Veera Venkata Gopi Naga Manikanta Sai Paladugu</strong>, a Computer Science and Engineering student specializing in Data Science at Aurora University.</p>
+    <ul>
+      <li><strong>Full Name:</strong> Veera Venkata Gopi Naga Manikanta Sai Paladugu</li>
+      <li><strong>Email:</strong> <a href="mailto:veeravenkatagopinagamanikantasai.paladugu@aurora.edu.in">veeravenkatagopinagamanikantasai.paladugu@aurora.edu.in</a></li>
+      <li><strong>Phone:</strong> 9346912398</li>
+      <li><strong>University:</strong> Aurora University</li>
+      <li><strong>Department:</strong> CSE - Data Science</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Personal Portfolio Website</h3>
+      <p>A personal portfolio website built with HTML, CSS, and JavaScript featuring login authentication and responsive design.</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+    <div class="project-card">
+      <h3>Data Analysis with Python</h3>
+      <p>Analyzed large datasets using Pandas and Matplotlib to generate insightful visualizations and reports.</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+    <div class="project-card">
+      <h3>Machine Learning Model for Sales Prediction</h3>
+      <p>Developed a regression model to predict sales trends using scikit-learn and deployed it on a Flask web app.</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form id="contact-form" autocomplete="off">
+      <input type="text" id="contact-name" placeholder="Your Name" required />
+      <input type="email" id="contact-email" placeholder="Your Email" required />
+      <textarea id="contact-message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Veera Venkata Gopi Naga Manikanta Sai Paladugu. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+  emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your EmailJS user ID
+
+  const loginContainer = document.getElementById('login-container');
+  const resetContainer = document.getElementById('reset-container');
+  const loginBackground = document.getElementById('login-background');
+  const mainContent = document.getElementById('main-content');
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  document.getElementById('forgot-password-link').addEventListener('click', e => {
+    e.preventDefault();
+    loginContainer.style.display = 'none';
+    resetContainer.style.display = 'block';
+  });
+
+  document.getElementById('back-to-login-link').addEventListener('click', e => {
+    e.preventDefault();
+    resetContainer.style.display = 'none';
+    loginContainer.style.display = 'block';
+  });
+
+  document.getElementById("login-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    if (username === "MANIKANTA" && password === "123456") {
+      alert("Login successful!");
+      loginBackground.style.display = "none";
+      mainContent.style.display = "block";
+      revealSections();
+    } else {
+      alert("Invalid credentials. Please try again.");
+    }
+  });
+
+  document.getElementById("reset-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email = document.getElementById("reset-email").value.trim();
+    if (email) {
+      alert(`If this email is registered, a password reset link has been sent to: ${email}\n(This is a simulation.)`);
+      this.reset();
+      resetContainer.style.display = 'none';
+      loginContainer.style.display = 'block';
+    }
+  });
+
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = document.getElementById("contact-name").value.trim();
+    const email = document.getElementById("contact-email").value.trim();
+    const message = document.getElementById("contact-message").value.trim();
+    if (!name || !email || !message) {
+      alert("Please fill all fields");
+      return;
+    }
+    const templateParams = { from_name: name, from_email: email, message: message };
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+      .then(() => { alert("Message sent successfully!"); this.reset(); },
+            () => { alert("Failed to send message. Please try again later."); });
+  });
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(section => {
+      if (pageYOffset >= section.offsetTop - 80) {
+        current = section.getAttribute("id");
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").substring(1) === current) {
+        link.classList.add("active");
+      }
+    });
+  });
+
+  function revealSections() {
+    sections.forEach((section, i) => {
+      setTimeout(() => { section.classList.add("visible"); }, i * 200);
+    });
+  }
+</script>
+</body>
+</html>
